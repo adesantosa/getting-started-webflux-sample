@@ -1,7 +1,7 @@
 # Objetivo
 
 * Fazer uma app que lista os usuarios dessa api:
-	https://jsonplaceholder.typicode.com/user
+	https://jsonplaceholder.typicode.com/users
   - Cenários(regra):
 	- Eu como PO, gostaria de listar todos os usuários que estão cadastrados.
 	
