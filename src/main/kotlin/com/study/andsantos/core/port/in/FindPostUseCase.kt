@@ -6,5 +6,5 @@ import reactor.core.publisher.Flux
 
 interface FindPostUseCase {
 
-    fun find(user: User): Flux<Post>
+    fun find(userId: Long): Flux<Post>
 }

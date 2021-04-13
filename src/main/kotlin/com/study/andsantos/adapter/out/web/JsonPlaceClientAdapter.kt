@@ -22,7 +22,6 @@ class JsonPlaceClientAdapter(
             .bodyToFlux(UserJsonPlaceResponse::class.java)
             .map { it.toDomain() }
 
-    override fun findPost(user: User): Flux<Post> {
-        TODO("Not yet implemented")
-    }
+    override fun findPost(userId: Long): Flux<Post> =
+        Flux.empty()
 }

@@ -8,10 +8,3 @@ data class User(
     val userName: String,
     val email: String
 )
-
-fun User.toUserResponse() = UserResponse(
-    id = id,
-    name = name,
-    userName = userName,
-    email = email
-)

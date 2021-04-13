@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service
 class FindUserService(
     private val findUserPort: FindUserPort
 ) : FindUserUseCase {
-  override fun find() = findUserPort.findUser()
+
+    override fun find() = findUserPort.findUser()
 
 }
