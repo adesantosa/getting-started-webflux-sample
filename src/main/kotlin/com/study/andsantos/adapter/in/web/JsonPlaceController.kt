@@ -17,12 +17,10 @@ class JsonPlaceController(
     fun findUsers() = userUseCase.find()
         .map { it.toUserResponse() }
 
-
     @GetMapping("/users/{id}/posts")
     fun findPosts(@PathVariable id: Long): Flux<PostResponse> {
-        //TODO
+        // TODO
 
         return Flux.empty()
     }
-
 }

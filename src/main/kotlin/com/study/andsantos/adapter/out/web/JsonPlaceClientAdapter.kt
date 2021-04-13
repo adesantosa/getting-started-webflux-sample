@@ -13,18 +13,16 @@ class JsonPlaceClientAdapter(
     private val webClientBuilder: WebClient.Builder
 ) : FindUserPort, FindPostPort {
 
-  private val webClient = webClientBuilder.baseUrl("https://jsonplaceholder.typicode.com/").build()
+    private val webClient = webClientBuilder.baseUrl("https://jsonplaceholder.typicode.com/").build()
 
-  override fun findUser(): Flux<User> =
-    webClient.get()
-        .uri("/users")
-        .retrieve()
-        .bodyToFlux(UserJsonPlaceResponse::class.java)
-        .map{ it.toDomain() }
+    override fun findUser(): Flux<User> =
+        webClient.get()
+            .uri("/users")
+            .retrieve()
+            .bodyToFlux(UserJsonPlaceResponse::class.java)
+            .map { it.toDomain() }
 
-
-  override fun findPost(user: User): Flux<Post> {
-    TODO("Not yet implemented")
-  }
-
+    override fun findPost(user: User): Flux<Post> {
+        TODO("Not yet implemented")
+    }
 }
