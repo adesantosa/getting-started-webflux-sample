@@ -17,6 +17,7 @@ repositories {
 }
 
 extra["springCloudVersion"] = "2020.0.2"
+val mockkVersion = "1.10.6"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
@@ -28,6 +29,10 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
+    testImplementation("io.mockk:mockk:$mockkVersion")
+    testImplementation("org.springframework.boot:spring-boot-starter-test") {
+        exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
+    }
 }
 
 dependencyManagement {
@@ -44,5 +49,21 @@ tasks.withType<KotlinCompile> {
 }
 
 tasks.withType<Test> {
+    maxHeapSize = "512m"
     useJUnitPlatform()
+    testLogging.showStandardStreams = true
+    addTestListener(object : TestListener {
+
+        override fun beforeTest(testDescriptor: TestDescriptor?) {
+            logger.lifecycle("beforeTest:$testDescriptor")
+        }
+
+        override fun afterSuite(suite: TestDescriptor?, result: TestResult?) {}
+
+        override fun beforeSuite(suite: TestDescriptor?) {}
+
+        override fun afterTest(testDescriptor: TestDescriptor?, result: TestResult?) {
+            logger.lifecycle("$testDescriptor: $result \n")
+        }
+    })
 }

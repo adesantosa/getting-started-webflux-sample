@@ -23,5 +23,13 @@ class JsonPlaceClientAdapter(
             .map { it.toDomain() }
 
     override fun findPost(userId: Long): Flux<Post> =
-        Flux.empty()
+        webClient.get()
+            .uri {
+                it.path("/posts")
+                    .queryParam("userId", userId)
+                    .build()
+            }
+            .retrieve()
+            .bodyToFlux(PostJsonPlaceResponse::class.java)
+            .map { it.toDomain() }
 }

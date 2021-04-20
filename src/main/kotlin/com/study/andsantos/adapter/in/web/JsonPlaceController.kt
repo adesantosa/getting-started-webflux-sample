@@ -20,5 +20,4 @@ class JsonPlaceController(
     fun findPosts(@PathVariable id: Long) =
         postUseCase.find(id)
             .map { it.toPostResponse() }
-
 }
