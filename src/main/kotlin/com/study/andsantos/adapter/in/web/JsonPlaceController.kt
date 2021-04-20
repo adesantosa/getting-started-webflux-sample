@@ -16,8 +16,8 @@ class JsonPlaceController(
     fun findUsers() = userUseCase.find()
         .map { it.toUserResponse() }
 
-    @GetMapping("/users/{id}/posts")
-    fun findPosts(@PathVariable id: Long) =
-        postUseCase.find(id)
+    @GetMapping("/users/{userId}/posts")
+    fun findPosts(@PathVariable userId: Long) =
+        postUseCase.find(userId)
             .map { it.toPostResponse() }
 }
