@@ -11,4 +11,3 @@ class FindUserService(
 
     override fun find() = findUserPort.findUser()
 }
-
